@@ -1,7 +1,7 @@
 {{--Toma los parametros del dashboard--}}
 @props([
-'title' => config('app.name', 'Dr.Stone'),
-'breadcrumbs' => []])
+  'title' => config('app.name', 'Laravel'),
+    'breadcrumbs' => []])
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{config('app.name', 'Dr.Stone') }}</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -18,7 +18,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+        
         <script src="https://kit.fontawesome.com/f05834f7d2.js" crossorigin="anonymous"></script>
 
         <wireui:scripts/>
@@ -40,7 +40,13 @@
         <div class="mt-14 flex items-center justify-between w-full">
             {{--Incluir breadcrumb--}}
             @include('Layouts.includes.admin.breadcrumb')
-
+            
+            {{--Slot de acciones (botones en la parte superior derecha)--}}
+            @isset($actions)
+                <div class="flex items-center">
+                    {{ $actions }}
+                </div>
+            @endisset
         </div>
         {{$slot}}
         </div>

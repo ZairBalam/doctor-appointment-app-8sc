@@ -14,13 +14,14 @@ class RoleController extends Controller
     {
         return view ('admin.roles.index');
     }
+    
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+         return view('admin.roles.create');
     }
 
     /**
@@ -44,7 +45,9 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $role = \Spatie\Permission\Models\Role::findOrFail($id);
+        return view('admin.roles.edit', compact('role'));
+
     }
 
     /**
