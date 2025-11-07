@@ -29,7 +29,25 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validar que se cree bien el rol
+        $request->validate([
+            'name' => 'required|unique:roles,name',
+        ]);
+
+        //si pasa la validacion, crear el rol
+        \Spatie\Permission\Models\Role::create(['name' => $request->name]);
+
+        //variable de session para el mensaje de exito
+        session()->flash('swal', 
+            [
+                'icon' => 'success',
+                'title' => 'Rol creado exitosamente',
+                'text' => 'El rol ha sido creado correctamente.',
+            ]
+        );
+
+        //redireccionar a la vista de roles con un mensaje de exito
+        return redirect()->route('admin.roles.index')->with('success', 'Rol created successfully');
     }
 
     /**
