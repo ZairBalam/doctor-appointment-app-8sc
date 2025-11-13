@@ -43,7 +43,7 @@
 <!-- añadir margen superior -->
         <div class="mt-14 flex items-center justify-between w-full">
             {{--Incluir breadcrumb--}}
-            @include('Layouts.includes.admin.breadcrumb')
+            @include('layouts.includes.admin.breadcrumb')
             
             {{--Slot de acciones (botones en la parte superior derecha)--}}
             @isset($actions)
